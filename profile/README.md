@@ -78,3 +78,6 @@ The meta tag is necessary to allow for branch overrides (see below).
 To ensure that changes do not break a live site, it is important to *always* make changes on a separate branch (not `production`).
 
 When using the main bundle resource URL and the referrer meta tag in the integration, the Searchspring CDN will be passed the full URL (including query parameters) of the site requesting the bundle resource. Using this mechanism we parse out the `branch` query parameter and will try to serve up a bundle from that branch location.
+
+## Step by Step Examples
+Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md
