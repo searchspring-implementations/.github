@@ -41,13 +41,13 @@ On commit, each branch runs a Github action (deploy.yml) that executes the follo
 Failure at any step in the process will halt the entire workflow - the bundle will not be uploaded to the CDN.
 
 ### Install Packages
-Node packages are installed via the `npm ci` command. This command uses the `packages-lock.json` file for dependency resolution; it is important that this file be commited on all `package.json` changes.
+Node packages are installed via the `npm ci` command. This command uses the `packages-lock.json` file for dependency resolution; it is important that this file be committed on all `package.json` changes.
 
 ### Build Snap Bundle
-The build process utilizes [Webpack](https://webpack.js.org/) to create the Snap bundle file(s). The number of files will depend on the complexity of the code base and the code splitting configuration.
+The build process utilizes [Webpack](https://webpack.js.org/) to create the Snap bundle file(s). The number of files will depend on the complexity of the codebase and the code splitting configuration.
 
 ### E2E Tests
-End to end tests are run using [Cypress](https://www.cypress.io/). Each site should at a minimum run core tests of the build - additional tests can be added as needed. The tests are located in the `/tests/cypress/integration` directory.
+End-to-end tests are run using [Cypress](https://www.cypress.io/). Each site should at a minimum run core tests of the build - additional tests can be added as needed. The tests are located in the `/tests/cypress/integration` directory.
 
 ### Upload to CDN
 After all other steps have completed, the bundle build files (`/dist` directory) and public files (`/public` directory) are pushed up to the Searchspring CDN (content delivery network) are the paths are invalidated (to clear the edge caching).
@@ -55,7 +55,7 @@ After all other steps have completed, the bundle build files (`/dist` directory)
 The entire build process plus invalidation can take up to 5 minutes to process.
 
 ## Bundle Files
-In the URL examples below, replace `[your_site_id]` with the valid six digit alphanumeric site id for your site.
+In the URL examples below, replace `[your_site_id]` with the valid six-digit alphanumeric site id for your site.
 
 ### Production Bundle
 The production bundle should be used on live site implementations, it is uploaded to this URL:  
