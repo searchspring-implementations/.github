@@ -6,7 +6,7 @@ Using the terminal, navigate to the directory of your choosing and clone the rep
 git clone git@github.com:searchspring-implementations/[YOUR_PROJECT].git
 ```
 
-If you allready have a checkout of the repository ensure thatthe `production` branch is up to date before branching.
+If you already have a checkout of the repository ensure that the `production` branch is up to date before branching.
 
 ```shell
 git checkout production
