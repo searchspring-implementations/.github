@@ -21,7 +21,6 @@ project
  ┣ 📂 tests
  ┃ ┣ 📂 cypress
  ┃ ┃ ┗ 📂 integration
- ┃ ┃   ┣ 📄 results.spec.js
  ┃ ┃   ┗ 📄 results.spec.js
  ┃ ┗ 📄 cypress.json
  ┣ 📄 .gitignore
