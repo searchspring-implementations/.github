@@ -47,7 +47,7 @@ npm run test
 
 Commit changes:
 ```shell
-git commit -A
+git add -A
 git commit -m 'a nice commit message talking about what changes were made'
 ```
 
