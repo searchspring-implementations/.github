@@ -28,6 +28,11 @@ project
  ┗ 📄 package.json
 ```
 
+## Node.js
+Snap development must currently be done with Node.js v16 (Gallium LTS) due to `node-sass` package requirements. The [Snap Github Action](https://github.com/searchspring/snap-action) Node.js runtime version is also v16.
+
+It is recommended to install Node.js via [NVM](https://github.com/nvm-sh/nvm) to easily switch between various versions.
+
 ## Branching
 The default branch for each repository is called `production`. The code in this branch is used to build the javascript bundle used on the live site. For this reason, any code changes should be made to a separate branch, tested, and then merged back into `production` when ready to release.
 
