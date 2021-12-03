@@ -1,5 +1,5 @@
 ## Change Example
-This example will outline the steps needed to make changes to a Snap project by working with the code on your local machine. Snap development should be done on [Node](https://nodejs.org/) v14 and higher.
+This example outlines the steps needed to make changes to a Snap project by working with the code on your local machine.
 
 Using the terminal, navigate to the directory of your choosing and clone the repository to your computer (replace `[YOUR_PROJECT]` with the correct path):
 ```shell
