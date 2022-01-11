@@ -29,18 +29,19 @@ project
 ```
 
 ## Node.js
-Snap development must currently be done with Node.js v16 (Gallium LTS) due to `node-sass` package requirements. The [Snap Github Action](https://github.com/searchspring/snap-action) Node.js runtime version is also v16.
+Snap development is recommended to be done with Node.js v16 (Gallium LTS). The [Snap Github Action](https://github.com/searchspring/snap-action) Node.js runtime version is also v16.
 
 It is recommended to install Node.js via [NVM](https://github.com/nvm-sh/nvm) to easily switch between various versions.
 
 ## Branching
-The default branch for each repository is called `production`. The code in this branch is used to build the javascript bundle used on the live site. For this reason, any code changes should be made to a separate branch, tested, and then merged back into `production` when ready to release.
+The default branch for each repository is called `production`. The code in this branch is used to build the javascript bundle used on the live site. This branch has [branch protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#require-status-checks-before-merging) which will restrict all commits to pull requests that have a passing `Snap Action` check. For this reason, any code changes must be made to a separate branch, tested, and then merged back into `production` via a pull request when ready to release. 
 
 ## Github Action
 On commit, each branch runs a Github action (deploy.yml) that executes the following steps:
 * install packages
 * build snap bundle
 * run e2e tests
+* sync recommendations templates
 * upload to CDN
 
 Failure at any step in the process will halt the entire workflow - the bundle will not be uploaded to the CDN.
@@ -73,15 +74,17 @@ All other branch bundles are uploaded to the CDN at this URL (replace `[branch_n
 ## Integration
 The bundle file is typically placed in a global header file on the site inside of the `<head>` tag. The sooner that the bundle file is loaded - the sooner that Searchspring results will render on the page.
 ```html
-<meta name="referrer" content="no-referrer-when-downgrade">
 <script src="https://snapui.searchspring.io/[your_site_id]/bundle.js"></script>
 ```
 The meta tag is necessary to allow for branch overrides (see below).
 
 ## Branch Overrides
-To ensure that changes do not break a live site, it is important to *always* make changes on a separate branch (not `production`).
+To ensure that changes do not break a live site, branch protection rules are in place requiring changes to be made on a separate branch (not `production`) and then merged in via a pull request.
 
-When using the main bundle resource URL and the referrer meta tag in the integration, the Searchspring CDN will be passed the full URL (including query parameters) of the site requesting the bundle resource. Using this mechanism we parse out the `branch` query parameter and will try to serve up a bundle from that branch location.
+To preview a branch simply add the branch name as a `branch` parameter to the current URL. For example, if you are on `https://www.sellingthings.com` and you wanted to test the `fix-bug` branch, you would navigate to `https://www.sellingthings.com?branch=fix-bug` after which you would see the branch preview popup showing the details of the preview.
+
+![image](https://user-images.githubusercontent.com/5060400/148846755-a291c5c5-d7a5-4ebb-8a25-0d1f465cd646.png)
+
 
 ## Step by Step Examples
 Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md
