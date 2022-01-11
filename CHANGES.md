@@ -29,7 +29,7 @@ Run the development server and build watcher:
 npm run dev
 ```
 
-The dev server is set to run on port 3333. And the bundle should be served at this location: https://localhost:3333/dist/bundle.js
+The dev server is set to run on port 3333. The bundle can be found at this location: https://localhost:3333/bundle.js
 
 The dev server will also serve up all files inside of the `/public` directory. Sites may have mockup files here to test locally.
 
@@ -58,22 +58,11 @@ git push -u origin my-new-branch
 
 Check the repository action status and verify that it completes successfully. https://github.com/searchspring-implementations
 
-Optionally verify that the changes fixed the problem by using the version override. Navigate to the website where Snap is integrated:  
-`http://yoursite.com/collection/things?branch=my-new-branch`
+Verify that the changes fixed the problem by using a branch preview. Navigate to the website where Snap is integrated:  
+`http://www.yoursite.com/collection/things?branch=my-new-branch`
 
-Once satisfied with the changes, the branch can be merged into `production`. This can be done via the command line, or via a Pull Request in Github.
+Once satisfied with the changes, the branch can be merged into `production`. This must be done via a Pull Request in Github. This extra step clearly identifies the incomming changes about to be merged so that any last minute issues can be resolved. Any merge conflicts are immediately identified and can even be resolved within Github. Pull requests also provide a method for requesting a peer review of your work before merging it in.
 
-```shell
-git checkout production
-git pull
-git merge my-new-branch
-git push
-```
-
-Merge conflicts may occur if the production branch has changed since the branch was created. Some conflicts must be resolved manually.
-
-We recommend using a Pull Request inside of Github to merge branches. This extra step clearly identifies the incomming changes about to be merged so that any last minute issues can be resolved. Any merge conflicts are immediately identified and can even be resolved within Github. Pull requests also provide a method for requesting a peer review of your work before merging it in.
-
-After the branch is merged into `production`, a Github action will kickoff, and if it succeeds, the changes will be published to the CDN and be live on the site.
+After the branch is merged into `production`, another Github action will kickoff, and if it succeeds, the changes will be published to the CDN and be live on the site.
 
 Congratulations, you have safely fixed a bug in your Snap project.
