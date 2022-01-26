@@ -100,7 +100,7 @@ Start up the webpack development server with the `npm run dev` script - this wil
 If Cypress tests are failing in the `Snap Action` it can be helpful to run these tests locally to debug them. This can be done either headlessly via the `npm run test` script (this is what the `Snap Action` uses), or with the Cypress UI by using both the `npm run dev` alongside the `npm run cypress` scripts.
 
 ### Analyze Bundle
-Webpack is configure by default to split the code into "chunks" when dynamic imports are used. Sometimes it can be helpful to know which chunk contains certain components or code, this can easily be done by using Webpack's analyze tool. You can view this by running the `npm run analyze` script.
+Webpack is configured by default to split the code into "chunks" when dynamic imports are used. Sometimes it can be helpful to know which chunk contains certain components or code; this can easily be done by using Webpack's analyze tool. You can view this by running the `npm run analyze` script.
 
 ## Step by Step Examples
 Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md
