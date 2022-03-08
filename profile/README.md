@@ -4,6 +4,8 @@ https://github.com/searchspring-implementations
 
 Repositories in this organization are supported by Searchspring and are configured to use a Github action to handle the testing, bundling and deploying of the Snap code.
 
+These repositories can also be viewed via the [Snapp Explorer](https://searchspring.github.io/snapp-explorer/).
+
 ## Directory Structure
 Directory structures may vary from project to project, but should generally follow the structure below. 
 
