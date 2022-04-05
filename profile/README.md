@@ -101,6 +101,11 @@ Start up the webpack development server with the `npm run dev` script - this wil
 ### E2E Testing
 If Cypress tests are failing in the `Snap Action` it can be helpful to run these tests locally to debug them. This can be done either headlessly via the `npm run test` script (this is what the `Snap Action` uses), or with the Cypress UI by using both the `npm run dev` alongside the `npm run cypress` scripts.
 
+### Lighthouse Testing
+If the Lighthouse test is failing in the `Snap Action` it can be helpful to run the test locally to debug. The most commain reasons for this test to fail are incorrect or missing target selectors and/or Javascript errors. If default selectors need to be modified or added, you can alter the `tests/lighthouse/public/lighthouse.html` file as needed.
+
+The Lighthouse test utilizes the final production build of the project bundle - so prior to testing you *must* run `npm run build` to generate the build. Once the bundle has been built, you can then run `npm run lighthouse` to kick off the Lighthouse testing. This test runs headlessly by default, but will output a URL in the terminal that you can visit to see what it may be rendering or what errors are occurring.
+
 ### Analyze Bundle
 Webpack is configured by default to split the code into "chunks" when dynamic imports are used. Sometimes it can be helpful to know which chunk contains certain components or code; this can easily be done by using Webpack's analyze tool. You can view this by running the `npm run analyze` script.
 
