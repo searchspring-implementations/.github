@@ -44,7 +44,8 @@ Commits directly to `production` are prohibited.
 On commit, each branch runs a Github action (deploy.yml) that executes the following steps:
 * install packages
 * build snap bundle
-* run e2e tests
+* run e2e tests (on pushes to any branch)
+* run lighthouse tests (on pull requests against any branch)
 * sync recommendations templates (`production` branch only)
 * upload to CDN with invalidation
 
@@ -61,6 +62,9 @@ Any recommendations templates found in the project will be synchronized to the S
 
 ### E2E Tests
 End-to-end tests are run using [Cypress](https://www.cypress.io/). Each site should at a minimum run core tests of the build - additional tests can be added as needed. The tests are located in the `/tests/cypress/integration` directory.
+
+### Lighthouse Testing
+Lighthouse testing is run using [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci). Lighthouse testing is to be used to try to determine if any performance, SEO or accessibility metrics have changed. The test HTML document can be found in `/tests/lighthouse/public/lighthouse.html`.
 
 ### Upload to CDN
 After all other steps have completed, the bundle build files (`/dist` directory) and public files (`/public` directory) are pushed up to the Searchspring CDN (content delivery network) and the appropriate paths are invalidated (to clear the edge caching).
