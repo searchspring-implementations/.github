@@ -1,0 +1,38 @@
+name: Capture Repo Count Metric
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # Every day at 8am UTC
+  push:
+    branches: [snap-repo-metric]
+
+jobs:
+  capture:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Get Repo Count
+        uses: actions/github-script@v6
+        id: repo-count
+        with:
+          github-token: ${{ secrets.MACHINE_TOKEN }}
+          script: |
+            const writeFileAsync = require("util").promisify(require("fs").writeFile);
+            const repos = await github.paginate("GET /orgs/searchspring-implementations/repos");
+            const now = new Date();
+            const obj = { "timestamp": now, "type": "snap-num-repos", data: { count: repos.length } };
+            const filename = "SnapNumRepos-" + (now.getFullYear().toString() + "_"+(now.getMonth()+1).toString() +"_"+ now.getDate().toString() + "_" + now.getHours().toString() + now.getMinutes().toString()) + ".json";
+            const contents = JSON.stringify(obj);
+            await writeFileAsync(filename, contents);
+            console.log("Created", filename, "with contents", contents);
+            return filename;
+          result-encoding: string
+      - name: Upload Metric
+        uses: zdurham/s3-upload-github-action@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SNAPFU_AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SNAPFU_AWS_SECRET_ACCESS_KEY }}
+          S3_BUCKET: datawarehouse-stage
+          FILE: ./${{ steps.repo-count.outputs.result }}
+          S3_KEY: team-metrics-import/${{ steps.repo-count.outputs.result }}
+          AWS_REGION: us-east-1
