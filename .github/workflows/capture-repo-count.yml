@@ -27,15 +27,6 @@ jobs:
             console.log("Created", filename, "with contents", contents);
             return filename;
           result-encoding: string
-      # - name: Upload Metric
-      #   uses: zdurham/s3-upload-github-action@master
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.SNAPFU_AWS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.SNAPFU_AWS_SECRET_ACCESS_KEY }}
-      #     S3_BUCKET: datawarehouse-stage
-      #     FILE: ./${{ steps.repo-count.outputs.result }}
-      #     S3_KEY: team-metrics-import/${{ steps.repo-count.outputs.result }}
-      #     AWS_REGION: us-east-1
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -46,4 +37,4 @@ jobs:
       - name: Copy Files to S3
         shell: bash
         run: |
-          aws s3 cp ./${{ steps.repo-count.outputs.result }} s3://datawarehouse-stage/team-metrics-import --region us-east-1
+          aws s3 cp ./${{ steps.repo-count.outputs.result }} s3://datawarehouse-stage/team-metrics-import/${{ steps.repo-count.outputs.result }} --region us-east-1
