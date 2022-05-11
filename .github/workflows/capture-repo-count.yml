@@ -23,7 +23,7 @@ jobs:
             });
             const now = new Date();
             const obj = { "timestamp": now, "type": "snap-num-repos", data: { count: repos.length } };
-            const filename = "SnapNumRepos-" + (now.getFullYear().toString() + "_"+(now.getMonth()+1).toString() +"_"+ now.getDate().toString() + "_" + now.getHours().toString() + now.getMinutes().toString()) + ".json";
+            const filename = `SnapNumRepos-${now.getFullYear()}_${now.getMonth() + 1}_${now.getDate()}_${now.getHours()}${now.getMinutes()}.json`;
             const contents = JSON.stringify(obj);
             await writeFileAsync(filename, contents);
             console.log("Created", filename, "with contents", contents);
