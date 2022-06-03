@@ -91,7 +91,7 @@ To preview a branch build, simply add the branch name as a `branch` parameter to
 
 For example, if you are on `https://www.sellingthings.com` and you wanted to test the `fix-bug` branch, you would navigate to `https://www.sellingthings.com?branch=fix-bug` after which you would see the branch preview popup showing the details of the preview.
 
-![image](https://user-images.githubusercontent.com/5060400/148846755-a291c5c5-d7a5-4ebb-8a25-0d1f465cd646.png)
+![image](https://raw.githubusercontent.com/searchspring/snap/main/images/branch-override.png)
 
 ## Local Development
 Typically a site repository would be cloned locally, modified on a new branch (based on `production`), pushed to Github and then merged back into the `production` branch using a pull request.
