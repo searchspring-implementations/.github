@@ -114,9 +114,7 @@ The Lighthouse test utilizes the final production build of the project bundle - 
 Webpack is configured by default to split the code into "chunks" when dynamic imports are used. Sometimes it can be helpful to know which chunk contains certain components or code; this can easily be done by using Webpack's analyze tool. You can view this by running the `npm run analyze` script.
 
 ## Dev Mode
-Development mode provides additional logging and prevents the caching of API responses. When developing locally, this will be automatically set. To set this mode on a live site, add a `dev` query parameter: `https://www.sellingthings.com?dev`. This will set a cookie that keeps development mode turned on for the site (query parameter will not be required). To remove development mode, set the query parameter equal to `0` or `false`: `https://www.sellingthings.com?dev=false`.
-
-For example, if you are on `https://www.sellingthings.com` and you wanted to test the `fix-bug` branch, you would navigate to `https://www.sellingthings.com?branch=fix-bug` after which you would see the branch preview popup showing the details of the preview.
+Development mode provides additional logging and prevents the caching of API responses. When developing locally, this will be automatically set. To set this mode on a live site, add a `dev` query parameter: `https://www.sellingthings.com?dev`. This will set a cookie that keeps the site in development mode. To remove development mode, set the query parameter equal to `0` or `false`: `https://www.sellingthings.com?dev=false`.
 
 ## Step by Step Examples
 Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md
