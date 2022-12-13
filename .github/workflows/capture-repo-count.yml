@@ -20,7 +20,7 @@ jobs:
             const writeFileAsync = require("util").promisify(require("fs").writeFile);
             const repos = await github.paginate("GET /orgs/searchspring-implementations/repos", {
               per_page: 100
-            });
+            }).filter(repo => !repo.name.match(/\.test$/));
             const now = new Date();
             const obj = { "timestamp": now, "type": "snap-num-repos", data: { count: repos.length } };
             const filename = `SnapNumRepos-${now.getFullYear()}_${now.getMonth() + 1}_${now.getDate()}_${now.getHours()}${now.getMinutes()}.json`;
