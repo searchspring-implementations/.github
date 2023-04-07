@@ -58,14 +58,24 @@ Node packages are installed via the `npm ci` command. This command uses the `pac
 The build process utilizes [Webpack](https://webpack.js.org/) to create the Snap bundle file(s). The number of files will depend on the complexity of the codebase and the code splitting configuration.
 
 ### Sync Recommendations Templates
+> ⚠️ This step occurs only on push actions triggered by the `production` branch.
+
 Any recommendations templates found in the project will be synchronized to the SMC by using the `snapfu recs sync` command. This happens only on the `production` branch.
 
 ### E2E Tests
+> ⚠️ This step occurs on push actions to any branch *except* for the `production` branch.
+
 End-to-end tests are run using [Cypress](https://www.cypress.io/). Each site should at a minimum run core tests of the build - additional tests can be added as needed. The tests are located in the `/tests/cypress/integration` directory.
 
 ### Lighthouse Testing
+> ⚠️ This step occurs for all pull request triggered actions.
+
 Lighthouse testing is run using [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci). Lighthouse testing is to be used to try to determine if any performance, SEO or accessibility metrics have changed. The test HTML document can be found in `/tests/lighthouse/public/lighthouse.html`.
 
+### Create Tag
+> ⚠️ This step occurs only for push actions triggered by the `production` branch. Tags in the repository should never be removed or added manually. Additionally, the value of `searchspring.version` in `package.json` should never be modified manually.
+
+A new Github tag will be pushed to the repository during this step. The new tag version is determined firstly by the value of `searchspring.version` in `package.json` and secondly by the existence of tags at that version. If a tag does not yet exist for `searchspring.version` it will be created (eg. `0.43.0`) - if one does exist, the tag version is *revision* incremented (eg. `0.43.0-1`).
 ### Upload to CDN
 After all other steps have completed, the bundle build files (`/dist` directory) and public files (`/public` directory) are pushed up to the Searchspring CDN (content delivery network) and the appropriate paths are invalidated (to clear the edge caching).
 
@@ -92,6 +102,10 @@ To preview a branch build, simply add the branch name as a `branch` parameter to
 For example, if you are on `https://www.sellingthings.com` and you wanted to test the `fix-bug` branch, you would navigate to `https://www.sellingthings.com?branch=fix-bug` after which you would see the branch preview popup showing the details of the preview.
 
 ![image](https://raw.githubusercontent.com/searchspring/snap/main/images/branch-override.png)
+
+Tag versions will also be uploaded to the CDN alowing usage of these in branch overrides.
+
+For example, if you are on `https://www.sellingthings.com` and you wanted to test the `0.43.0` tag, you would navigate to `https://www.sellingthings.com?branch=0.43.0` which will trigger the load of that build.
 
 ## Local Development
 Typically a site repository would be cloned locally, modified on a new branch (based on `production`), pushed to Github and then merged back into the `production` branch using a pull request.
