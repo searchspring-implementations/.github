@@ -131,4 +131,5 @@ Webpack is configured by default to split the code into "chunks" when dynamic im
 Development mode provides additional logging and prevents the caching of API responses. When developing locally, this will be automatically set. To set this mode on a live site, add a `dev` query parameter: `https://www.sellingthings.com?dev`. This will set a cookie that keeps the site in development mode. To remove development mode, set the query parameter equal to `0` or `false`: `https://www.sellingthings.com?dev=false`.
 
 ## Step by Step Examples
-Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md
+Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md  
+Rollback a published change on `production` by reverting a tag: https://github.com/searchspring-implementations/.github/blob/production/REVERT.md
