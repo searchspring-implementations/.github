@@ -132,4 +132,4 @@ Development mode provides additional logging and prevents the caching of API res
 
 ## Step by Step Examples
 Generic code change: https://github.com/searchspring-implementations/.github/blob/production/CHANGES.md  
-Revert last tag: https://github.com/searchspring-implementations/.github/blob/production/REVERT.md
+Rollback a published change on `production` by reverting a tag: https://github.com/searchspring-implementations/.github/blob/production/REVERT.md
